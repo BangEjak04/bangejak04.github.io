@@ -14,7 +14,8 @@
     />
 
     <!-- CSS &JS -->
-    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- <script src="https://cdn.tailwindcss.com"></script> -->
+     <link rel="stylesheet" href="style.css">
     <script
       defer
       src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"
@@ -25,7 +26,7 @@
       }
     </style>
   </head>
-  <body class="antialiased bg-gray-50">
+  <body class="antialiased">
     <!-- Header -->
     <header
       class="sticky top-0 z-50 w-full border-b border-gray-200/40 bg-white/95 backdrop-blur"
@@ -99,22 +100,42 @@
     </header>
 
     <!-- Main Content -->
-    <main class="container mx-auto px-4">
-      <div class="mt-16">
+    <main class="container mx-auto px-8">
+      <div class="mt-16 max-w-sm mx-auto flex flex-col">
         <div class="mb-4">
-            <h1 class="text-center text-3xl text-transparent font-semibold bg-gradient-to-t from-[#8BC6EC] to-[#9599E2] bg-clip-text">
-              Dari Kode ke Kelas<br />Petualangan Seorang Programmer dan Guru
+            <h1 class="text-center text-3xl sm:text-4xl text-transparent font-semibold bg-gradient-to-t from-[#8BC6EC] to-[#9599E2] bg-clip-text">
+              Dari Kode ke Kelas<br />Petualangan Seorang<br />Programmer dan Guru
             </h1>
         </div>
-        <h3 class="text-center font-medium text-lg">
-          Membangun masa depan digital<br />dengan coding dan mengajar.
+        <h3 class="text-center font-medium text-lg text-slate-600">
+          Membangun masa depan digital dengan coding dan mengajar.
         </h3>
+      </div>
+
+      <div class="mt-16 grid grid-cols-1 gap-8">
+        <div class="rounded-xl border-2 shadow shadow-blue-200 border-blue-200 min-h-80 flex justify-start items-end p-8 relative overflow-hidden from-30%">
+            Fat
+        </div>
+        <div class="rounded-xl border-2 shadow shadow-blue-200 border-blue-200 min-h-80 flex justify-start items-end p-8 relative overflow-hidden from-30%">
+            Fat
+        </div>
+      </div>
+
+      <div class="mt-40 max-w-sm text-center mb-48">
+        <h2 class="text-3xl sm:text-4xl font-semibold mb-4">Ingin Jadi<br />Programmer Cilik?</h2>
+        <h3 class="font-medium text-lg mb-8 text-slate-600">Belajar coding sambil bermain dengan kelas online yang seru!</h3>
+        <a href="" class="inline-block">
+            <div class="px-6 py-4 font-semibold rounded-xl text-white bg-gradient-to-tr from-[#9599E2] to-[#8BC6EC]">Hubungi Saya</div>
+        </a> 
       </div>
     </main>
 
+    <footer class="px-6 py-8 text-center font-semibold bg-cyan-950 text-white">
+        Copyright © 2019-present Bang Ejak Project
+    </footer>
+
     <!-- Lucide Icon Script -->
-    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
-    <!-- <script src="https://unpkg.com/lucide@latest"></script> -->
+    <script src="https://unpkg.com/lucide@latest"></script>
     <script>
       lucide.createIcons();
     </script>
