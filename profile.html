@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+
+    <!-- Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- CSS &JS -->
+    <script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio,line-clamp,container-queries"></script>
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"
+    ></script>
+    <style>
+      * {
+        font-family: inter;
+      }
+    </style>
+  </head>
+  <body class="antialiased">
+    <!-- Header -->
+    <header
+      class="sticky top-0 z-50 w-full border-b border-gray-200/40 bg-white/95 backdrop-blur"
+    >
+      <div class="flex mx-auto px-8 w-full items-center h-14 max-w-screen-2xl">
+        <div class="flex"></div>
+        <div x-data="{ navOpen: false }" class="flex">
+          <button
+            type="button"
+            @click="navOpen = !navOpen; document.body.classList.toggle('overflow-hidden')"
+            class="py-2"
+          >
+            <span class="sr-only">Toggle Button</span>
+            <i data-lucide="menu" class="size-5 text-gray-700 stroke-2"></i>
+          </button>
+          <div
+            x-show="navOpen"
+            class="fixed inset-0 h-dvh bg-white p-4 z-40"
+            style="display: none"
+          >
+            <button
+              type="button"
+              @click="navOpen = false; document.body.classList.toggle('overflow-hidden')"
+              class="z-50 absolute right-4 top-4 rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:pointer-events-none"
+            >
+              <i data-lucide="x" class="size-5 text-gray-700 stroke-2"></i>
+            </button>
+            <div class="mt-8">
+              <ul>
+                <li>
+                  <a href="">
+                    <div class="px-4 py-2 rounded-md hover:font-semibold hover:bg-gray-100 transistion-all">My Profile</div>
+                  </a>
+                </li>
+                <li>
+                  <a href="">
+                    <div class="px-4 py-2 rounded-md hover:font-semibold hover:bg-gray-100 transistion-all">Wedding Invitation (Example)</div>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div
+          class="flex items-center justify-between flex-1 space-x-2 md:justify-end"
+        >
+          <a
+            href="https://github.com/BangEjak04"
+            target="_blank"
+            rel="noreferrer"
+            class="group"
+          >
+            <div
+              class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 group-hover:bg-gray-100 h-9 px-4 py-2"
+            >
+              <i
+                data-lucide="github"
+                class="size-4 text-gray-700 group-hover:text-gray-500 stroke-2"
+              ></i>
+              <span class="sr-only">GitHub</span>
+            </div>
+          </a>
+          <a
+            href="https://instagram.com/_fatimaaz01"
+            target="_blank"
+            rel="noreferrer"
+            class="group"
+          >
+            <div
+              class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 group-hover:bg-gray-100 h-9 px-4 py-2"
+            >
+              <i
+                data-lucide="heart"
+                class="absolute inline-flex size-4 text-gray-700 group-hover:text-red-500 group-hover:fill-red-500 group-hover:animate-ping stroke-2 transition-all"
+              ></i>
+              <i
+                data-lucide="heart"
+                class="size-4 text-gray-700 group-hover:text-red-500 group-hover:fill-red-500 stroke-2 transition-all"
+              ></i>
+              <span class="sr-only">GitHub</span>
+            </div>
+          </a>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-8">
+      <div class="mt-16 max-w-sm mx-auto flex flex-col">
+        <div class="mb-4">
+          <h1
+            class="text-center text-3xl sm:text-4xl text-transparent font-semibold bg-gradient-to-t from-[#8BC6EC] to-[#9599E2] bg-clip-text"
+          >
+            Dari Kode ke Kelas<br />Petualangan Seorang<br />Programmer dan Guru
+          </h1>
+        </div>
+        <h3 class="text-center font-medium text-lg text-slate-600">
+          Membangun masa depan digital dengan coding dan mengajar.
+        </h3>
+      </div>
+
+      <div class="mt-16 grid grid-cols-1 gap-8">
+        <h2 class="text-3xl sm:text-4xl font-semibold mb-4">
+          Ingin Jadi<br />Programmer Cilik?
+        </h2>
+        <div
+          class="rounded-xl border min-h-80 flex justify-start items-end p-8 relative overflow-hidden from-30%"
+        >
+          <div class="flex flex-col">
+            <div class="text-lg font-semibold">
+              Pembelajaran yang Menyenangkan
+            </div>
+            <div class="">
+              Setiap orang memiliki cara belajar yang unik, dan saya akan
+              membantu Anda menemukan cara terbaik untuk belajar coding.
+            </div>
+          </div>
+        </div>
+        <div
+          class="rounded-xl border min-h-80 flex justify-start items-end p-8 relative overflow-hidden from-30%"
+        >
+          <div class="flex flex-col">
+            <div class="text-lg font-semibold">
+              Pengalaman Mengajar Anak-anak
+            </div>
+            <div class="">
+              Saya memiliki metode khusus untuk mengajar anak-anak agar mereka
+              dapat dengan mudah memahami konsep-konsep pemrograman yang
+              kompleks.
+            </div>
+          </div>
+        </div>
+        <div
+          class="rounded-xl border min-h-80 flex justify-start items-end p-8 relative overflow-hidden from-30%"
+        >
+          Fat
+        </div>
+      </div>
+
+      <div class="mt-40 max-w-sm mx-auto text-center mb-48">
+        <h2 class="text-3xl sm:text-4xl font-semibold mb-4">
+          Ingin Jadi<br />Programmer Cilik?
+        </h2>
+        <h3 class="font-medium text-lg mb-8 text-slate-600">
+          Belajar coding sambil bermain dengan kelas online yang seru!
+        </h3>
+        <a href="" class="inline-block">
+          <div
+            class="px-6 py-4 font-semibold rounded-xl text-white bg-gradient-to-tr from-[#9599E2] to-[#8BC6EC]"
+          >
+            Hubungi Saya
+          </div>
+        </a>
+      </div>
+    </main>
+
+    <footer class="px-6 py-8 text-center font-semibold bg-cyan-950 text-white">
+      Copyright © 2024-present Bang Ejak Project
+    </footer>
+
+    <!-- Lucide Icon Script -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+      lucide.createIcons();
+    </script>
+  </body>
+</html>
