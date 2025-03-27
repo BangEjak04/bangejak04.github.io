@@ -5,11 +5,17 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Wijaya Cookies | Bang Ejak Project</title>
+  <meta property="og:title" content="Toko Kue Kering Lezat" />
+  <meta property="og:description" content="Pesan berbagai macam kue kering lezat dengan harga terjangkau!" />
+  <meta property="og:image" content="https://bangejak04.github.io/projects/wijayacookies/img/WijayaCookies_Thumbnail.webp" />
+  <meta property="og:url" content="https://bangejak04.github.io/projects/wijayacookies" />
+  <meta property="og:type" content="website" />
+  <meta name="keywords" content="Wijaya, Cake, Cookies, Wijaya Cookies, Wijaya Cookie, Kue, Kering, Kue Kering" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
     href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&family=Onest:wght@100..900&display=swap"
-    rel="stylesheet">
+    rel="stylesheet" />
   <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
   <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.14.8/dist/cdn.min.js"></script>
   <style>
@@ -18,16 +24,16 @@
     }
 
     .BricolageGrotesque {
-      font-family: 'Bricolage Grotesque';
+      font-family: "Bricolage Grotesque";
     }
   </style>
 </head>
 
 <body class="antialiased bg-white font-[Onest]" x-data="{
   products: [
-      { id: 1, name: 'Lidah Kucing', price: 40000, description: 'Kue lidah kucing renyah.', variants: ['Keju', 'Coklat'], image: 'img/lidah-kucing.webp' },
-      { id: 2, name: 'Nastar', price: 60000, description: 'Kue nastar dengan isian nanas yang lezat.', image: 'img/lidah-kucing.webp' },
-      { id: 3, name: 'Kastengel', price: 75000, description: 'Kue kastengel gurih dengan keju melimpah.', image: 'img/lidah-kucing.webp' },
+      { id: 1, name: 'Lidah Kucing', price: 40000, description: 'Kue lidah kucing renyah.', variants: ['Original', 'Keju', 'Coklat'], image: 'img/lidah-kucing.webp' },
+      { id: 2, name: 'Nastar', price: 60000, description: 'Kue nastar dengan isian nanas yang lezat.', image: 'img/nastar.webp' },
+      { id: 3, name: 'Kastengel', price: 75000, description: 'Kue kastengel gurih dengan keju melimpah.', image: 'img/kastengel.webp' },
       { id: 4, name: 'Monde', price: 40000, description: 'Kue monde yang lembut dan enak.', image: 'img/monde.webp' },
       { id: 5, name: 'Crackers', price: 40000, description: 'Crackers renyah dengan rasa gurih.', image: 'img/crackers.webp' },
       { id: 6, name: 'Meises Butter', price: 40000, description: 'Kue meises dengan butter premium.', image: 'img/meises-butter.webp' },
@@ -108,8 +114,7 @@
       
       window.open(url, '_blank');
   }
-}"
->
+}">
   <header class="fixed top-0 w-full">
     <nav class="relative">
       <div class="bg-gray-900"></div>
@@ -118,7 +123,9 @@
           <div class="flex h-16 items-center justify-between">
             <a href="">
               <span class="sr-only">Wijaya Cookies</span>
-              <h1 class="BricolageGrotesque font-extrabold tracking-tight text-2xl text-[#935B38]">Wijaya Cookies</h1>
+              <h1 class="BricolageGrotesque font-extrabold tracking-tight text-2xl text-[#935B38]">
+                Wijaya Cookies
+              </h1>
             </a>
             <div class="flex flex-1 items-center justify-end">
               <button type="button" @click="toggleCart"
@@ -290,7 +297,7 @@
                       Jumlah produk: <span x-text="getTotalQty()"></span>
                     </p>
                     <p class="mt-4 text-sm text-gray-500">
-                      Shipping and taxes calculated at checkout.
+                      Biaya pengiriman dan pajak dihitung saat pembayaran.
                     </p>
                     <div class="mt-6">
                       <a href="#" @click="checkout()"
@@ -359,13 +366,16 @@
                       <!-- Variant -->
                       <template x-if="selectedProduct.variants && selectedProduct.variants.length">
                         <fieldset class="mt-10">
-                          <div class="text-sm font-medium text-gray-900">Varian</div>
+                          <div class="text-sm font-medium text-gray-900">
+                            Varian
+                          </div>
                           <div class="mt-2 flex space-x-2">
                             <template x-for="variant in selectedProduct.variants" :key="variant">
                               <label class="relative cursor-pointer">
                                 <input type="radio" x-model="selectedProduct.variant" :value="variant"
                                   class="peer hidden" />
-                                <div class="px-4 py-2 border rounded-lg transition duration-75 bg-gray-100 border-gray-300 peer-checked:bg-[#935B38] peer-checked:text-[#FBECD5] peer-checked:font-medium peer-checked:border-transparent">
+                                <div
+                                  class="px-4 py-2 border rounded-lg transition duration-75 bg-gray-100 border-gray-300 peer-checked:bg-[#935B38] peer-checked:text-[#FBECD5] peer-checked:font-medium peer-checked:border-transparent">
                                   <span x-text="variant"></span>
                                 </div>
                               </label>
