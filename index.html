@@ -4,34 +4,28 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
+
+    <!-- Font -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400;1,700&family=Bricolage+Grotesque:opsz,wght@12..96,200..800&family=Manrope:wght@200..800&family=Parisienne&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
       rel="stylesheet"
     />
+
+    <!-- CSS &JS -->
     <script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio,line-clamp,container-queries"></script>
-    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
-    <link rel="stylesheet" href="src/wedding/css/style.css" />
     <script
       defer
       src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"
     ></script>
-
-    <!-- Maps -->
-    <link
-      rel="stylesheet"
-      href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
-      integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
-      crossorigin=""
-    />
-    <script
-      src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
-      integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
-      crossorigin=""
-    ></script>
+    <style>
+      * {
+        font-family: inter;
+      }
+    </style>
   </head>
-  <body class="antialiased bg-yellow-50">
+  <body class="antialiased">
     <!-- Header -->
     <header
       class="sticky top-0 z-50 w-full border-b border-gray-200/40 bg-white/95 backdrop-blur"
@@ -118,138 +112,84 @@
       </div>
     </header>
 
-    <div class="max-w-sm mx-auto">
-      <section class="h-svh px-4 py-3 flex flex-col justify-center">
-        <!-- <div class="relative p-8 text-center">
-                <div class="font-bricolage italic text-3xl opacity-20">&</div>
-                <div class="absolute right-1/2 bottom-1/2 font-bricolage text-5xl">Reza</div>
-                <div class="absolute left-1/2 top-1/2 font-bricolage text-5xl">Fatimah</div>
-            </div> -->
-        <p class="text-center manrope text-lg capitalize">The Wedding Of</p>
-        <div class="relative p-4 text-center">
-          <div class="-mb-2 bricolage text-7xl">Reza</div>
-          <div class="bricolage italic text-3xl opacity-50">&</div>
-          <div class="-mt-2 bricolage text-7xl">Fatimah</div>
+    <!-- Main Content -->
+    <main class="container mx-auto px-8">
+      <div class="mt-16 max-w-sm mx-auto flex flex-col">
+        <div class="mb-4">
+          <h1
+            class="text-center text-3xl sm:text-4xl text-transparent font-semibold bg-gradient-to-t from-[#8BC6EC] to-[#9599E2] bg-clip-text"
+          >
+            Dari Kode ke Kelas<br />Petualangan Seorang<br />Programmer dan Guru
+          </h1>
         </div>
-        <div class="manrope text-center capitalize">January 4th, 2025</div>
-        <!-- <div class="mt-4 flex justify-center">
-            <a
-              href="https://calendar.google.com/calendar/render?action=TEMPLATE&text={judul}&dates={waktu_mulai}/{waktu_selesai}&details={deskripsi}&location={lokasi}"
-              class=""
-            >
-                <div class="border p-2 manrope">Simpan Tanggal</div>
-            </a>
-        </div> -->
-      </section>
+        <h3 class="text-center font-medium text-lg text-slate-600">
+          Membangun masa depan digital dengan coding dan mengajar.
+        </h3>
+      </div>
 
-      <section class="h-svh px-6 py-3 flex flex-col justify-center">
-        <div data-aos="fade-up" class="text-center">
-          <p class="manrope">
-            Maha suci Allah yang telah menciptakan makhluk-Nya
-            berpasang-pasangan
-          </p>
-          <br />
-          <p class="manrope">
-            Dengan gembira kami sampaikan pelabuhan terakhir kami
-          </p>
+      <div class="mt-16 grid grid-cols-1 gap-8">
+        <h2 class="text-3xl sm:text-4xl font-semibold mb-4">
+          Ingin Jadi<br />Programmer Cilik?
+        </h2>
+        <div
+          class="rounded-xl border min-h-80 flex justify-start items-end p-8 relative overflow-hidden from-30%"
+        >
+          <div class="flex flex-col">
+            <div class="text-lg font-semibold">
+              Pembelajaran yang Menyenangkan
+            </div>
+            <div class="">
+              Setiap orang memiliki cara belajar yang unik, dan saya akan
+              membantu Anda menemukan cara terbaik untuk belajar coding.
+            </div>
+          </div>
         </div>
-      </section>
+        <div
+          class="rounded-xl border min-h-80 flex justify-start items-end p-8 relative overflow-hidden from-30%"
+        >
+          <div class="flex flex-col">
+            <div class="text-lg font-semibold">
+              Pengalaman Mengajar Anak-anak
+            </div>
+            <div class="">
+              Saya memiliki metode khusus untuk mengajar anak-anak agar mereka
+              dapat dengan mudah memahami konsep-konsep pemrograman yang
+              kompleks.
+            </div>
+          </div>
+        </div>
+        <div
+          class="rounded-xl border min-h-80 flex justify-start items-end p-8 relative overflow-hidden from-30%"
+        >
+          Fat
+        </div>
+      </div>
 
-      <section class="h-svh px-6 py-3 flex flex-col justify-center">
-        <div data-aos="fade-up"
-          class="aspect-w-3 aspect-h-4 border bg-white bg-[url('https://i.pinimg.com/originals/c8/aa/a7/c8aaa7e77f0cac4a32ca1b866acc492a.png')] bg-cover bg-no-repeat bg-right rounded-full"
-        ></div>
-        <div data-aos="fade-up" class="mt-4 text-center">
-          <h5 class="bricolage text-3xl">Fatimah az-Zahra</h5>
-          <p class="manrope">Putri pertama dari Bpk Muhammad & ibu Khadijah</p>
-        </div>
-      </section>
+      <div class="mt-40 max-w-sm mx-auto text-center mb-48">
+        <h2 class="text-3xl sm:text-4xl font-semibold mb-4">
+          Ingin Jadi<br />Programmer Cilik?
+        </h2>
+        <h3 class="font-medium text-lg mb-8 text-slate-600">
+          Belajar coding sambil bermain dengan kelas online yang seru!
+        </h3>
+        <a href="" class="inline-block">
+          <div
+            class="px-6 py-4 font-semibold rounded-xl text-white bg-gradient-to-tr from-[#9599E2] to-[#8BC6EC]"
+          >
+            Hubungi Saya
+          </div>
+        </a>
+      </div>
+    </main>
 
-      <section class="h-svh px-6 py-3 flex flex-col justify-center">
-        <div data-aos="fade-up"
-          class="aspect-w-3 aspect-h-4 border bg-white bg-[url('https://pics.clipartpng.com/Groom_Silhouette_PNG_Clip_Art-1215.png')] bg-cover bg-no-repeat bg-top rounded-full"
-        ></div>
-        <div data-aos="fade-up" class="mt-4 text-center">
-          <h5 class="bricolage text-3xl">Reza Andyah Wijaya</h5>
-          <p class="manrope">Putra kedua dari Bpk Fulan & ibu Fulani</p>
-        </div>
-      </section>
+    <footer class="px-6 py-8 text-center font-semibold bg-cyan-950 text-white">
+      Copyright © 2024-present Bang Ejak Project
+    </footer>
 
-      <section class="h-svh flex flex-col justify-center space-y-4">
-        <div data-aos="fade-up" id="map" class="h-48 w-full"></div>
-        <div data-aos="fade-up" class="px-6 py-3 text-center">
-          <h5 class="bricolage text-3xl">Akad</h5>
-          <p class="manrope">Waktu: 09.00 WIB - Selesai</p>
-          <p class="manrope">Lokasi: Aston Hotel Sidoarjo</p>
-          <p class="manrope">Sabtu, 4 Januari 2025</p>
-        </div>
-        <div data-aos="fade-up" class="px-6 py-3 text-center">
-          <h5 class="bricolage text-3xl">Resepsi</h5>
-          <p class="manrope">Waktu: 09.00 WIB - Selesai</p>
-          <p class="manrope">Lokasi: Aston Hotel Sidoarjo</p>
-          <p class="manrope">Minggu, 5 Januari 2025</p>
-        </div>
-        <div data-aos="fade-up" class="px-6 py-3 text-center">
-          <p class="manrope">(Lokasi dapat diakses kursi roda)</p>
-        </div>
-      </section>
-
-      <section class="h-svh px-6 py-3 flex flex-col justify-center">
-        <div data-aos="fade-up" class="text-center">
-          <h5 class="bricolage text-3xl">Kado Digital</h5>
-          <p class="manrope">1367xxxxxx (BCA)</p>
-          <p class="manrope">A.n. Reza Andyah Wijaya</p>
-        </div>
-      </section>
-
-      <section class="h-svh px-6 py-3 flex flex-col justify-center">
-        <div class="text-center">
-          <h5 data-aos="fade-up" class="amiri text-xl leading-loose">
-            وَمِنْ اٰيٰتِهٖٓ اَنْ خَلَقَ لَكُمْ مِّنْ اَنْفُسِكُمْ اَزْوَاجًا
-            لِّتَسْكُنُوْٓا اِلَيْهَا وَجَعَلَ بَيْنَكُمْ مَّوَدَّةً
-            وَّرَحْمَةًۗ اِنَّ فِيْ ذٰلِكَ لَاٰيٰتٍ لِّقَوْمٍ
-            يَّتَفَكَّرُوْنَ<span> ۝٢١ </span>
-          </h5>
-          <p data-aos="fade-up" class="playfair">
-            Dan di antara tanda-tanda (kebesaran)-Nya ialah bahwa Dia
-            menciptakan pasangan-pasangan untukmu dari (jenis) dirimu sendiri
-            agar kamu merasa tenteram kepadanya. Dia menjadikan di antaramu rasa
-            cinta dan kasih sayang. Sesungguhnya pada yang demikian itu
-            benar-benar terdapat tanda-tanda (kebesaran Allah) bagi kaum yang
-            berpikir.
-          </p>
-          <p data-aos="fade-up" class="playfair font-semibold">QS Ar-Rum: 21</p>
-        </div>
-      </section>
-
-      <section class="h-svh px-6 py-3 flex flex-col justify-center">
-        <div class="text-center text-sm">
-          <p data-aos="fade-up" class="manrope">
-            We would like to thank you for sharing in our wedding celebration.
-            We are grateful for your presence, warm wishes, and your generous
-            gift.
-          </p>
-          <p data-aos="fade-up" class="manrope">
-            We look forward to our future together and to making more memories
-            with you.
-          </p>
-          <br />
-          <p data-aos="fade-up" class="manrope">See You On Our Big Day</p>
-          <h5 data-aos="fade-up" class="bricolage text-3xl">Reza & Fatimah</h5>
-        </div>
-      </section>
-    </div>
-    
-
-    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
-    <script>
-      AOS.init();
-    </script>
     <!-- Lucide Icon Script -->
     <script src="https://unpkg.com/lucide@latest"></script>
     <script>
       lucide.createIcons();
     </script>
-    <script src="src/wedding/js/leaflet.js"></script>
   </body>
 </html>

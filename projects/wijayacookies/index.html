@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Wijaya Cookies | Bang Ejak Project</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&family=Onest:wght@100..900&display=swap"
+    rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.14.8/dist/cdn.min.js"></script>
+  <style>
+    [x-cloak] {
+      display: none !important;
+    }
+
+    .BricolageGrotesque {
+      font-family: 'Bricolage Grotesque';
+    }
+  </style>
+</head>
+
+<body class="antialiased bg-white font-[Onest]" x-data="{
+  products: [
+      { id: 1, name: 'Lidah Kucing', price: 40000, description: 'Kue lidah kucing renyah.', variants: ['Keju', 'Coklat'], image: 'img/lidah-kucing.webp' },
+      { id: 2, name: 'Nastar', price: 60000, description: 'Kue nastar dengan isian nanas yang lezat.', image: 'img/lidah-kucing.webp' },
+      { id: 3, name: 'Kastengel', price: 75000, description: 'Kue kastengel gurih dengan keju melimpah.', image: 'img/lidah-kucing.webp' },
+      { id: 4, name: 'Monde', price: 40000, description: 'Kue monde yang lembut dan enak.', image: 'img/monde.webp' },
+      { id: 5, name: 'Crackers', price: 40000, description: 'Crackers renyah dengan rasa gurih.', image: 'img/crackers.webp' },
+      { id: 6, name: 'Meises Butter', price: 40000, description: 'Kue meises dengan butter premium.', image: 'img/meises-butter.webp' },
+      { id: 7, name: 'Cornflakes', price: 40000, description: 'Kue cornflakes manis dan renyah.', image: 'img/cornflakes.webp' },
+  ],
+  cart: [],
+  totalCart: 0,
+  selectedProduct: null,
+  showModal: false,
+  showCart: false,
+  
+  toggleCart() { 
+      this.showCart = !this.showCart; 
+  },
+
+  formatPrice(price) {
+      return price.toLocaleString('id-ID');
+  },
+
+  openModal(product) {
+      let existingItem = this.cart.find(i => i.id === product.id);
+      this.selectedProduct = { 
+          ...product, 
+          qty: existingItem ? existingItem.qty : 1 
+      };
+
+      this.selectedProduct.variant = product.variants?.length > 0 ? product.variants[0] : null;
+      this.showModal = true;
+  },
+
+  addToCart() {
+      if (!this.selectedProduct) return;
+
+      let existingItem = this.cart.find(i => i.id === this.selectedProduct.id && i.variant === this.selectedProduct.variant);
+      
+      if (existingItem) {
+          existingItem.qty++;
+      } else {
+          this.cart.push({ 
+              id: this.selectedProduct.id, 
+              name: this.selectedProduct.name, 
+              price: this.selectedProduct.price, 
+              variant: this.selectedProduct.variant, 
+              qty: 1,
+              image: this.selectedProduct.image 
+          });
+      }
+
+      this.showModal = false;
+  },
+
+  removeFromCart(id, variant) {
+      this.cart = this.cart.filter(i => !(i.id === id && i.variant === variant));
+  },
+
+  getTotalQty() {
+      return this.cart.reduce((total, item) => total + item.qty, 0);
+  },
+
+  checkout() {
+      if (this.cart.length === 0) {
+          alert('Keranjang belanja Anda kosong!');
+          return;
+      }
+
+      let message = 'Saya ingin memesan:\n';
+      let total = 0;
+
+      this.cart.forEach(item => {
+          let subtotal = item.price * item.qty;
+          total += subtotal;
+          let variantText = item.variant ? ` (${item.variant})` : '';
+          message += `- ${item.name}${variantText} x${item.qty} = Rp ${subtotal.toLocaleString('id-ID')}\n`;
+      });
+
+      message += `\nTotal: Rp ${total.toLocaleString('id-ID')}`;
+      let url = `https://wa.me/6281235427972?text=${encodeURIComponent(message)}`;
+      
+      window.open(url, '_blank');
+  }
+}"
+>
+  <header class="fixed top-0 w-full">
+    <nav class="relative">
+      <div class="bg-gray-900"></div>
+      <div class="bg-white border-b border-gray-200">
+        <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div class="flex h-16 items-center justify-between">
+            <a href="">
+              <span class="sr-only">Wijaya Cookies</span>
+              <h1 class="BricolageGrotesque font-extrabold tracking-tight text-2xl text-[#935B38]">Wijaya Cookies</h1>
+            </a>
+            <div class="flex flex-1 items-center justify-end">
+              <button type="button" @click="toggleCart"
+                class="m-1 ms-0 relative inline-flex justify-center items-center size-11 text-sm font-semibold rounded-lg border border-gray-200 bg-white text-gray-800 shadow-2xs hover:bg-gray-50 focus:outline-hidden focus:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none">
+                <svg class="shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                  viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                  stroke-linejoin="round">
+                  <path d="m5 11 4-7"></path>
+                  <path d="m19 11-4-7"></path>
+                  <path d="M2 11h20"></path>
+                  <path d="m3.5 11 1.6 7.4a2 2 0 0 0 2 1.6h9.8c.9 0 1.8-.7 2-1.6l1.7-7.4"></path>
+                  <path d="m9 11 1 9"></path>
+                  <path d="M4.5 15.5h15"></path>
+                  <path d="m15 11-1 9"></path>
+                </svg>
+                <template x-if="cart.length">
+                  <span class="flex absolute top-0 end-0 -mt-2 -me-2">
+                    <span
+                      class="animate-ping absolute inline-flex size-full rounded-full bg-[#7B4E2F] opacity-75"></span>
+                    <span x-text="cart.length"
+                      class="relative inline-flex text-xs bg-[#935B38] text-white rounded-full py-0.5 px-1.5"></span>
+                    <span class="sr-only">items in cart, view bag</span>
+                  </span>
+                </template>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </header>
+  <div class="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8">
+    <div class="mt-8">
+      <h2 class="sr-only">Products</h2>
+      <h2 class="font-display text-3xl font-extrabold tracking-tight text-[#935B38]">
+        Kue Kering
+      </h2>
+    </div>
+    <div class="mt-10 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8">
+      <template x-for="product in products" :key="product.id">
+        <div class="cursor-pointer" @click="openModal(product)">
+          <img :src="product.image"
+            alt="Tall slender porcelain bottle with natural clay textured body and cork stopper."
+            class="aspect-square w-full rounded-lg bg-gray-200 object-cover group-hover:opacity-75 xl:aspect-7/8" />
+          <h3 class="mt-4 text-sm text-gray-700" x-text="product.name"></h3>
+          <p class="mt-1 text-lg font-medium text-gray-900" x-text="'Rp ' + formatPrice(product.price)"></p>
+        </div>
+      </template>
+    </div>
+
+    <!-- Keranjang Slide Over -->
+    <div class="relative z-10" role="dialog" x-show="showCart" x-cloak>
+      <div class="fixed inset-0 bg-gray-500/75" x-transition></div>
+      <div class="fixed inset-0 overflow-hidden">
+        <div class="absolute inset-0 overflow-hidden">
+          <div class="pointer-events-none fixed inset-y-0 right-0 flex max-w-full pl-10">
+            <div class="pointer-events-auto w-screen max-w-md">
+              <div class="flex h-full flex-col overflow-y-scroll bg-white shadow-xl" @click.away="showCart = false">
+                <div class="flex-1 overflow-y-auto px-4 py-6 sm:px-6">
+                  <div class="flex items-start justify-between">
+                    <h2 class="text-lg font-medium text-gray-900" id="slide-over-title">
+                      Keranjang
+                    </h2>
+                    <div class="ml-3 flex h-7 items-center">
+                      <button type="button" @click="showCart = false"
+                        class="relative -m-2 p-2 text-gray-400 hover:text-gray-500">
+                        <span class="absolute -inset-0.5"></span>
+                        <span class="sr-only">Close panel</span>
+                        <svg class="size-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+                          aria-hidden="true" data-slot="icon">
+                          <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
+                        </svg>
+                      </button>
+                    </div>
+                  </div>
+
+                  <template x-if="cart.length === 0">
+                    <div class="h-[80vh] flex items-center justify-center">
+                      <p class="text-gray-500">Keranjang kosong</p>
+                    </div>
+                  </template>
+                  <template x-for="item in cart" :key="item.id + (item.variant || '')">
+                    <div class="mt-8">
+                      <div class="flow-root">
+                        <ul role="list" class="-my-6 divide-y divide-gray-200">
+                          <li class="flex py-6">
+                            <div class="size-24 shrink-0 overflow-hidden rounded-md border border-gray-200">
+                              <img :src="item.image" :alt="item.name" class="size-full object-cover" />
+                            </div>
+
+                            <div class="ml-4 flex flex-1 flex-col">
+                              <div>
+                                <div class="flex justify-between text-base font-medium text-gray-900">
+                                  <h3>
+                                    <a href="#" x-text="item.name"></a>
+                                  </h3>
+                                  <p class="ml-4" x-text="'Rp ' + (item.price * item.qty).toLocaleString('id-ID')"></p>
+                                </div>
+                                <template x-if="item.variant">
+                                  <p class="mt-1 text-sm text-gray-500" x-text="item.variant"></p>
+                                </template>
+                              </div>
+                              <div class="flex flex-1 items-end justify-between text-sm">
+                                <!-- Input Number -->
+                                <div class="py-2 px-3 bg-gray-100 rounded-lg" data-hs-input-number="">
+                                  <div class="w-full flex justify-between items-center gap-x-5">
+                                    <div class="grow">
+                                      <input
+                                        class="w-full p-0 bg-transparent border-0 text-gray-800 focus:ring-0 [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
+                                        style="-moz-appearance: textfield" type="number"
+                                        aria-roledescription="Number field" x-model="item.qty" min="1" />
+                                    </div>
+                                    <div class="flex justify-end items-center gap-x-1.5">
+                                      <button type="button"
+                                        class="size-6 inline-flex justify-center items-center gap-x-2 text-sm font-medium rounded-md border border-gray-200 bg-white text-gray-800 shadow-2xs hover:bg-gray-50 focus:outline-none focus:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none"
+                                        tabindex="-1" aria-label="Decrease"
+                                        @click="item.qty = Math.max(1, item.qty - 1)">
+                                        <svg class="shrink-0 size-3.5" xmlns="http://www.w3.org/2000/svg" width="24"
+                                          height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                          stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                          <path d="M5 12h14"></path>
+                                        </svg>
+                                      </button>
+                                      <button type="button"
+                                        class="size-6 inline-flex justify-center items-center gap-x-2 text-sm font-medium rounded-md border border-gray-200 bg-white text-gray-800 shadow-2xs hover:bg-gray-50 focus:outline-none focus:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none"
+                                        tabindex="-1" aria-label="Increase" @click="item.qty = item.qty + 1">
+                                        <svg class="shrink-0 size-3.5" xmlns="http://www.w3.org/2000/svg" width="24"
+                                          height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                          stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                          <path d="M5 12h14"></path>
+                                          <path d="M12 5v14"></path>
+                                        </svg>
+                                      </button>
+                                      <button type="button"
+                                        class="ml-2 size-6 inline-flex justify-center items-center gap-x-2 text-sm font-medium rounded-md border border-gray-200 bg-white text-red-800 shadow-2xs hover:bg-gray-50 focus:outline-none focus:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none"
+                                        tabindex="-1" aria-label="Remove"
+                                        @click="removeFromCart(item.id, item.variant)">
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"
+                                          class="shrink-0 size-3.5">
+                                          <path fill-rule="evenodd"
+                                            d="M8.75 1A2.75 2.75 0 0 0 6 3.75v.443c-.795.077-1.584.176-2.365.298a.75.75 0 1 0 .23 1.482l.149-.022.841 10.518A2.75 2.75 0 0 0 7.596 19h4.807a2.75 2.75 0 0 0 2.742-2.53l.841-10.52.149.023a.75.75 0 0 0 .23-1.482A41.03 41.03 0 0 0 14 4.193V3.75A2.75 2.75 0 0 0 11.25 1h-2.5ZM10 4c.84 0 1.673.025 2.5.075V3.75c0-.69-.56-1.25-1.25-1.25h-2.5c-.69 0-1.25.56-1.25 1.25v.325C8.327 4.025 9.16 4 10 4ZM8.58 7.72a.75.75 0 0 0-1.5.06l.3 7.5a.75.75 0 1 0 1.5-.06l-.3-7.5Zm4.34.06a.75.75 0 1 0-1.5-.06l-.3 7.5a.75.75 0 1 0 1.5.06l.3-7.5Z"
+                                            clip-rule="evenodd" />
+                                        </svg>
+                                      </button>
+                                    </div>
+                                  </div>
+                                </div>
+                                <!-- End Input Number -->
+                              </div>
+                            </div>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                  </template>
+                </div>
+
+                <template x-if="cart.length">
+                  <div class="border-t border-gray-200 px-4 py-6 sm:px-6">
+                    <div class="flex justify-between text-base font-medium text-gray-900">
+                      <p>Subtotal</p>
+                      <p>
+                        Rp
+                        <span
+                          x-text="cart.reduce((sum, item) => sum + (item.price * item.qty), 0).toLocaleString('id-ID')"></span>
+                      </p>
+                    </div>
+                    <p class="mt-0.5 text-sm text-gray-500">
+                      Jumlah produk: <span x-text="getTotalQty()"></span>
+                    </p>
+                    <p class="mt-4 text-sm text-gray-500">
+                      Shipping and taxes calculated at checkout.
+                    </p>
+                    <div class="mt-6">
+                      <a href="#" @click="checkout()"
+                        class="flex items-center justify-center rounded-md border border-transparent bg-[#935B38] px-6 py-3 text-base font-medium text-white shadow-xs hover:bg-[#7B4E2F]">
+                        Checkout
+                      </a>
+                    </div>
+                  </div>
+                </template>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="relative z-10" role="dialog" x-show="showModal" x-cloak>
+      <div class="fixed inset-0 hidden bg-gray-500/75 transition-opacity md:block" aria-hidden="true"></div>
+
+      <div class="fixed inset-0 z-10 w-screen overflow-y-auto">
+        <div class="flex min-h-full items-stretch justify-center text-center md:items-center md:px-2 lg:px-4">
+          <div class="flex w-full transform text-left text-base transition md:my-8 md:max-w-2xl md:px-4 lg:max-w-4xl">
+            <div
+              class="relative flex w-full items-center overflow-hidden bg-white px-4 pt-14 pb-8 shadow-2xl sm:px-6 sm:pt-8 md:p-6 lg:p-8"
+              @click.away="showModal = false">
+              <button type="button" @click="showModal = false"
+                class="absolute top-4 right-4 text-gray-400 hover:text-gray-500 sm:top-8 sm:right-6 md:top-6 md:right-6 lg:top-8 lg:right-8">
+                <span class="sr-only">Close</span>
+                <svg class="size-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+                  aria-hidden="true" data-slot="icon">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
+                </svg>
+              </button>
+
+              <div class="grid w-full grid-cols-1 items-start gap-x-6 gap-y-8 sm:grid-cols-12 lg:gap-x-8">
+                <img :src="selectedProduct?.image" alt="Two each of gray, white, and black shirts arranged on table."
+                  class="aspect-3/4 w-full rounded-lg bg-gray-100 object-cover sm:col-span-4 lg:col-span-5" />
+                <div class="sm:col-span-8 lg:col-span-7">
+                  <h2 class="text-2xl font-bold text-gray-900 sm:pr-12" x-text="selectedProduct?.name"></h2>
+
+                  <section aria-labelledby="information-heading" class="mt-2">
+                    <h3 id="information-heading" class="sr-only">
+                      Product information
+                    </h3>
+
+                    <p class="text-2xl text-gray-900">
+                      Rp
+                      <span x-text="formatPrice(selectedProduct?.price)"></span>
+                    </p>
+
+                    <div class="mt-10">
+                      <legend class="text-sm font-medium text-gray-900">
+                        Deskripsi
+                      </legend>
+                      <p class="text-gray-600 mt-2" x-text="selectedProduct?.description"></p>
+                    </div>
+                  </section>
+
+                  <section aria-labelledby="options-heading" class="mt-10">
+                    <h3 id="options-heading" class="sr-only">
+                      Product options
+                    </h3>
+
+                    <form @submit.prevent>
+                      <!-- Variant -->
+                      <template x-if="selectedProduct.variants && selectedProduct.variants.length">
+                        <fieldset class="mt-10">
+                          <div class="text-sm font-medium text-gray-900">Varian</div>
+                          <div class="mt-2 flex space-x-2">
+                            <template x-for="variant in selectedProduct.variants" :key="variant">
+                              <label class="relative cursor-pointer">
+                                <input type="radio" x-model="selectedProduct.variant" :value="variant"
+                                  class="peer hidden" />
+                                <div class="px-4 py-2 border rounded-lg transition duration-75 bg-gray-100 border-gray-300 peer-checked:bg-[#935B38] peer-checked:text-[#FBECD5] peer-checked:font-medium peer-checked:border-transparent">
+                                  <span x-text="variant"></span>
+                                </div>
+                              </label>
+                            </template>
+                          </div>
+                        </fieldset>
+                      </template>
+
+                      <button type="submit" @click="addToCart"
+                        class="mt-6 flex w-full items-center justify-center rounded-md border border-transparent bg-[#935B38] px-8 py-3 text-base font-medium text-white hover:bg-[#7B4E2F] focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:outline-hidden">
+                        Tambah ke keranjang
+                      </button>
+                    </form>
+                  </section>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>
