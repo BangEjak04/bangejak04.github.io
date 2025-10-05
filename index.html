@@ -20,13 +20,36 @@
     <!-- A-Frame -->
     <script src="https://aframe.io/releases/1.7.0/aframe.min.js"></script>
 
-    <!-- Zappar -->
-    <script src="https://libs.zappar.com/zappar-aframe/3.1.0/zappar-aframe.js"></script>
-
     <!-- Tailwind CSS -->
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <style type="text/tailwindcss">
+      @custom-variant dark (&:where(.dark, .dark *));
+      @theme {
+        --font-sans: "Geist", sans-serif;
+      }
+    </style>
+
+    <style>
+      .sidebar-fade-enter-active,
+      .sidebar-fade-leave-active {
+        transition: opacity 0.1s ease;
+      }
+      .sidebar-fade-enter-from,
+      .sidebar-fade-leave-to {
+        opacity: 0;
+      }
+    </style>
+
+    <!-- Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&family=Onest:wght@100..900&display=swap"
+      rel="stylesheet"
+    />
   </head>
-  <body>
+
+  <body class="bg-white text-neutral-800 dark:bg-neutral-950 dark:text-neutral-50 overscroll-none font-sans antialiased">
     <div id="app"></div>
   </body>
 </html>
