@@ -12,6 +12,7 @@ import {
   SidebarMenuSubButton,
   SidebarMenuSubItem,
 } from '@/components/ui/sidebar'
+import AppLogo from './AppLogo.vue';
 
 const data = {
   navMain: [
@@ -35,6 +36,10 @@ const data = {
           title: 'Vue',
           url: '/projects/vue',
         },
+        {
+          title: 'Augmented Reality',
+          url: '/projects/augmented-reality',
+        },
       ],
     },
   ],
@@ -44,7 +49,20 @@ const data = {
 <template>
   <Sidebar>
     <SidebarHeader>
-      <a href="" class="text-lg font-bold text-center"> BangEjak </a>
+      <RouterLink to="/">
+        <SidebarMenu>
+          <SidebarMenuItem>
+            <SidebarMenuButton size="lg" as-child>
+              <RouterLink to="/">
+                <div class="flex aspect-square size-8 items-center justify-center rounded-lg bg-black bg-cover text-sidebar-primary-foreground dark:bg-white">
+                  <AppLogo class="size-4 fill-white dark:fill-black" />
+                </div>
+                <h4 class="scroll-m-20 text-xl font-semibold tracking-tight">Bang Ejak</h4>
+              </RouterLink>
+            </SidebarMenuButton>
+          </SidebarMenuItem>
+        </SidebarMenu>
+      </RouterLink>
     </SidebarHeader>
     <SidebarContent>
       <SidebarGroup>
@@ -59,11 +77,8 @@ const data = {
             <SidebarMenuSub v-if="item.items != null">
               <SidebarMenuSubItem v-for="childItem in item.items" :key="childItem.title">
                 <SidebarMenuSubButton as-child>
-                  <RouterLink
-                    :to="childItem.url"
-                    activeClass="bg-neutral-100 dark:bg-neutral-800"
-                    >{{ childItem.title }}</RouterLink
-                  >
+                  <RouterLink :to="childItem.url" activeClass="bg-neutral-100 dark:bg-neutral-800">{{ childItem.title }}
+                  </RouterLink>
                 </SidebarMenuSubButton>
               </SidebarMenuSubItem>
             </SidebarMenuSub>
